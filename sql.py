@@ -6,8 +6,8 @@ import pandas as pd
 
 # ✅ Configuration
 anthropic_client = anthropic.Anthropic(api_key="your_API_KEY")
-database = "retaildata" # Replace with your database name
-server = "MOHINI\SQLEXPRESS"  # Replace with your SQL Server instance
+database = "databasename" # Replace with your database name
+server = "servername"  # Replace with your SQL Server instance you will have in studio at the login page.
 
 # ✅ Step 1: Get natural language query
 if len(sys.argv) < 2:
