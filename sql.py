@@ -5,7 +5,7 @@ import pyodbc
 import pandas as pd
 
 # ✅ Configuration
-anthropic_client = anthropic.Anthropic(api_key="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")
+anthropic_client = anthropic.Anthropic(api_key="your_API_KEY")
 database = "retaildata" # Replace with your database name
 server = "MOHINI\SQLEXPRESS"  # Replace with your SQL Server instance
 
