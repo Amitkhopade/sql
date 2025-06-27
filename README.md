@@ -1,20 +1,44 @@
-# Sql Agent to read database and write a sql query.
+ SQL Developer Agent – Overview
+This agent is designed to connect to your SQL Server database, read the table structure and schema, and intelligently generate SQL queries or stored procedures in response to natural language questions.
 
-This agent will read the database and understand the table structure and schema & provide the sql query also it will provide store procedure.
-if any one would like to use at enterpise level CPU & GPU is not a constrint then you can use SQLCoder‑34B (≈84%), Arctic‑Text2SQL‑R1‑7B (SOTA Bird), CodeS‑15B (≈86% Spider).
-however I prefered to use anothopric model since it has high accuracy if you would like to use only for local perpose.
+For local or enterprise-level use, you can customize the underlying LLM based on your requirements:
 
-i installed libary
-pip pyodbc pandas anthropic sys.
+🧠 Model Options
+✅ SQLCoder‑34B (≈84% accuracy) — large and ideal for enterprise usage with CPU/GPU resources
 
-if you would like to run use sql.py " then your query" 
-also you should have microsoft server management studio to have your server details.
-ig any help needed 
+✅ Arctic‑Text2SQL‑R1‑7B (SOTA, Bird benchmark) — lightweight and effective
 
-creating a table was one challenge i come across so take out any kaggle datase download it on local machine & put that file in the C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\ path.
-then use below sql commond to upload it on the sql sever. i used other methods as well using import functions but i was getting error this method is quite easy to do it.
-Make sure table is created with your rows & if you prefered to write it by own you can use create command if no then you know the answer.
+✅ CodeS‑15B (≈86% on Spider) — another strong candidate for production-level tasks
 
+However, for local personal use, I preferred using Anthropic Claude (e.g., Claude 3.5) due to its high accuracy and reliability without needing GPU-intensive setup.
+
+🖥️ Environment Setup
+Ensure the following libraries are installed:
+
+bash
+Copy
+Edit
+pip install pyodbc pandas anthropic
+▶️ Running the Agent from Terminal or PowerShell
+To run the agent and get a SQL query from a natural language question:
+
+bash
+Copy
+Edit
+python sql.py "Show total orders from Germany over the last 30 days"
+You must have Microsoft SQL Server Management Studio (SSMS) installed to access your SQL Server instance and get the correct connection details (server name, database name, etc.).
+
+📥 Uploading Bulk Data to SQL Server
+Creating tables was one of the early challenges I encountered. I suggest downloading any structured dataset (e.g., from Kaggle), saving it locally, and then using the BULK INSERT command.
+
+⚠️ Place your CSV file at this location:
+C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\
+
+Then use the following T-SQL command to insert data:
+
+sql
+Copy
+Edit
 BULK INSERT CustomerOrders
 FROM 'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\yourfilename.csv'
 WITH (
@@ -25,14 +49,22 @@ WITH (
     CODEPAGE = '65001',
     FORMAT = 'CSV'
 );
+✅ Tip: Before running the BULK INSERT, ensure your table (CustomerOrders) is already created with the correct column names and data types that match the CSV file. You can create it manually using CREATE TABLE or through SSMS.
 
-Advise- Do not directly copy paste query i did it & boom, i deleted entire table lol :)
+⚠️ Caution: Do not blindly copy-paste queries into your SQL editor. I once mistakenly ran a query that deleted the entire table. Always double-check before executing critical operations!
 
-#Future possiblity.
+🔮 Future Possibilities
+You can further expand this agent by:
 
-add another agent who will read all the database and table those are running on the sql server & it wiill store update the disciption then our agent to write a quqery.
-since LLM will not able to understand all entire server table and databases.
-also, you can built using stremlit and flask for using thr user interface extend the possiblities to resolve the bugs.
+Creating another agent that scans all databases and tables running on your SQL Server instance.
 
-contact@#KHOPADE.AMIT91@GMAIL.COM
+Auto-generating or updating table descriptions, which will enhance LLM understanding.
 
+Building a Streamlit or Flask interface to make it more user-friendly and interactive.
+
+Extending error handling, logging, and prompt optimization to make it production-ready.
+
+This could eventually evolve into a complete AI-powered assistant for database developers, analysts, and support teams.
+
+📧 For questions or help:
+contact: khopade.amit91@gmail.com
