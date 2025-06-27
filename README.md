@@ -11,12 +11,28 @@ if you would like to run use sql.py " then your query"
 also you should have microsoft server management studio to have your server details.
 ig any help needed 
 
-Contact khopade.amit91@gmail.com
+creating a table was one challenge i come across so take out any kaggle datase download it on local machine & put that file in the C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\ path.
+then use below sql commond to upload it on the sql sever. i used other methods as well using import functions but i was getting error this method is quite easy to do it.
+Make sure table is created with your rows & if you prefered to write it by own you can use create command if no then you know the answer.
 
+BULK INSERT CustomerOrders
+FROM 'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\yourfilename.csv'
+WITH (
+    FIRSTROW = 2,
+    FIELDTERMINATOR = ',',
+    ROWTERMINATOR = '\n',
+    TABLOCK,
+    CODEPAGE = '65001',
+    FORMAT = 'CSV'
+);
 
-Future possiblity.
+Advise- Do not directly copy paste query i did it & boom, i deleted entire table lol :)
+
+#Future possiblity.
+
 add another agent who will read all the database and table those are running on the sql server & it wiill store update the disciption then our agent to write a quqery.
 since LLM will not able to understand all entire server table and databases.
 also, you can built using stremlit and flask for using thr user interface extend the possiblities to resolve the bugs.
 
-Advise- Do not directly copy paste query i did i deleted entire table lol :)
+contact@#KHOPADE.AMIT91@GMAIL.COM
+
