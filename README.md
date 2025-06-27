@@ -1,4 +1,5 @@
- SQL Developer Agent – Overview
+ #SQL Developer Agent – Overview
+ 
 This agent is designed to connect to your SQL Server database, read the table structure and schema, and intelligently generate SQL queries or stored procedures in response to natural language questions.
 
 For local or enterprise-level use, you can customize the underlying LLM based on your requirements:
